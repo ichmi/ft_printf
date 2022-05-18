@@ -35,15 +35,14 @@ char	*ft_ultoa(unsigned long n, char *base)
 	if (!base || !*base)
 		base = "0123456789";
 	len = ft__ndigits(n, base);
-	s = malloc((len + 1) * sizeof(char));
+	s = ft_calloc(len + 1, sizeof(char));
 	if (!s)
 		return (NULL);
-	s[len] = '\0';
 	while (--len)
 	{
 		s[len] = base[n % ft_strlen(base)];
 		n /= ft_strlen(base);
 	}
-	s[0] = base[n % ft_strlen(base)];
+	s[len] = base[n % ft_strlen(base)];
 	return (s);
 }

@@ -14,13 +14,13 @@
 
 static int	ft_putlhex(unsigned long d)
 {
-	char	*hex;
+	char	*base;
 	int		bw;
 
 	bw = 0;
-	hex = "0123456789abcdef";
+	base = "0123456789abcdef";
 	if (d < 16)
-		bw += write(1, hex + d, 1);
+		bw += write(1, base + d, 1);
 	else if (d >= 16)
 	{
 		bw += ft_putlhex(d / 16);
@@ -31,13 +31,13 @@ static int	ft_putlhex(unsigned long d)
 
 static int	ft_putuhex(unsigned long d)
 {
-	char	*hex;
+	char	*base;
 	int		bw;
 
 	bw = 0;
-	hex = "0123456789ABCDEF";
+	base = "0123456789ABCDEF";
 	if (d < 16)
-		bw += write(1, hex + d, 1);
+		bw += write(1, base + d, 1);
 	else if (d >= 16)
 	{
 		bw += ft_putuhex(d / 16);

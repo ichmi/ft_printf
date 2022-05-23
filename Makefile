@@ -6,11 +6,11 @@
 #    By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/16 14:02:31 by frosa-ma          #+#    #+#              #
-#    Updated: 2022/05/18 17:01:58 by frosa-ma         ###   ########.fr        #
+#    Updated: 2022/05/22 18:08:17 by frosa-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY	= all clean fclean re
+.PHONY	= all clean fclean re bonus
 
 NAME	= libftprintf.a
 CC		= gcc
@@ -29,6 +29,10 @@ ${NAME}: ${LIB} ft_printf.o
 
 ${LIB}:
 	@${MAKE} -C libft/ && ${MAKE} clean -C libft/
+
+bonus: ${LIB} ft_printf.o
+	@cp libft/$< $@ && rm libft/$<
+	@ar -rc $@ ft_printf.o
 
 clean:
 	@rm *.o

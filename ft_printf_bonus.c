@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/10 20:59:04 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/25 18:31:39 by frosa-ma         ###   ########.fr       */
+/*   Created: 2022/05/23 23:53:54 by frosa-ma          #+#    #+#             */
+/*   Updated: 2022/05/25 18:31:35 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 int	__spec_dispatch(char spec, va_list ap)
 {
@@ -31,6 +31,25 @@ int	__spec_dispatch(char spec, va_list ap)
 	return (0);
 }
 
+static int	__check_spec(const char **fmt, va_list ap)
+{
+	if (**fmt == '#')
+		return (__sharp(fmt, ap));
+	if (**fmt == '+')
+		return (__plus(fmt, ap));
+	if (**fmt == '-')
+		return (__minus(fmt, ap));
+	if (**fmt == '.')
+		return (__dot(fmt, ap));
+	if (**fmt == ' ')
+		return (__space(fmt, ap));
+	if (ft_isdigit(**fmt))
+		return (__zero(ft_atoi(*fmt), fmt, ap));
+	if (ft_strchr("cspdiuxX%", **fmt))
+		return (__spec_dispatch(**fmt, ap));
+	return (0);
+}
+
 int	ft_printf(const char *fmt, ...)
 {
 	int		bw;
@@ -43,8 +62,7 @@ int	ft_printf(const char *fmt, ...)
 		if (*fmt == '%')
 		{
 			++fmt;
-			if (ft_strchr("cspdiuxX%", *fmt))
-				bw += __spec_dispatch(*fmt, ap);
+			bw += __check_spec(&fmt, ap);
 		}
 		else
 			bw += write(1, fmt, 1);

@@ -6,56 +6,50 @@
 #    By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/16 14:02:31 by frosa-ma          #+#    #+#              #
-#    Updated: 2022/05/25 21:45:50 by frosa-ma         ###   ########.fr        #
+#    Updated: 2022/05/27 19:06:47 by frosa-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY	= all clean fclean re bonus
 
 NAME	= libftprintf.a
-CC		= gcc
+CC		= cc
 CFLAGS	= -Wall -Werror -Wextra
+INC		= -I. -I libft/
 MAKE	= make -s
 LIB		= libft.a
-M_SRCS	= \
-		ft_printf.c
+SRCS	= \
+	ft_printf.c \
+	ft_printf_utils.c \
+	dot_disp.c \
+	dot_wr.c \
+	dot.c \
+	minus_disp.c \
+	minus_wr.c \
+	minus.c \
+	space_disp.c \
+	space_wr.c \
+	space.c \
+	zero_disp.c \
+	zero_wr.c \
+	zero.c \
+	sharp.c \
+	plus.c
 
-B_SRCS	= \
-		ft_printf_bonus.c \
-		ft_printf_utils_bonus.c \
-		dot_bonus.c \
-		dot_dispatcher_bonus.c \
-		dot_spec_bonus.c \
-		minus_bonus.c \
-		minus_dispatcher_bonus.c \
-		minus_spec_bonus.c \
-		space_bonus.c \
-		space_dispatcher_bonus.c \
-		space_spec_bonus.c \
-		zero_bonus.c \
-		zero_dispatcher_bonus.c \
-		zero_spec_bonus.c \
-		sharp_bonus.c \
-		plus_bonus.c
-
-M_OBJS	= ${M_SRCS:.c=.o}
-B_OBJS	= ${B_SRCS:.c=.o}
+OBJS	= ${SRCS:.c=.o}
 
 all: ${NAME}
 
-${NAME}: ${LIB} ${M_OBJS}
-	@cp inc/libft/$< $@ && rm inc/libft/$<
-	@ar -rcs $@ ${M_OBJS}
-
+${NAME}: ${LIB} ${OBJS}
+	@mv libft/${LIB} $@
+	@ar -rcs $@ ${OBJS}
 .c.o:
-	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I inc/ -I inc/libft/
+	@${CC} ${CFLAGS} ${INC} -c $< -o ${<:.c=.o} 
 
 ${LIB}:
-	@${MAKE} -C inc/libft/ && ${MAKE} clean -C inc/libft/
+	@${MAKE} -C libft/ && ${MAKE} clean -C libft/
 
-bonus: ${LIB} ${B_OBJS}
-	@cp inc/libft/${LIB} ${NAME} && rm inc/libft/${LIB}
-	@ar -rcs ${NAME} ${B_OBJS}
+bonus: all
 
 clean:
 	@rm -rf *.o

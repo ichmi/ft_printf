@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   space_bonus.c                                      :+:      :+:    :+:   */
+/*   space.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 03:04:49 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/25 21:14:00 by frosa-ma         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:08:11 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static int	__space_justify(int n, const char **fmt, va_list ap)
 {

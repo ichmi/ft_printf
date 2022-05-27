@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sharp_bonus.c                                      :+:      :+:    :+:   */
+/*   sharp.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 00:01:19 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/25 21:20:52 by frosa-ma         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:07:59 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static int	__sharp_justify(char *buff, char *s, char spec)
 {

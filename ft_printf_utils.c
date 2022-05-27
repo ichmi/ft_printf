@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoins.c                                      :+:      :+:    :+:   */
+/*   ft_printf_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 11:23:13 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/25 23:01:03 by frosa-ma         ###   ########.fr       */
+/*   Created: 2022/05/25 18:39:46 by frosa-ma          #+#    #+#             */
+/*   Updated: 2022/05/27 19:07:28 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_strjoins(char *s1, char const *s2)
+char	*__getstr(char spec, va_list ap)
 {
-	char	*buff;
-	size_t	size;
+	char	*s;
 
-	if (!s1 || !*s1)
-		return (ft_strdup(s2));
-	size = ft_strlen(s1) + ft_strlen(s2);
-	buff = (char *)malloc(size + 1);
-	if (!buff)
-		return (NULL);
-	ft_strlcpy(buff, s1, -1);
-	ft_strlcat(buff, s2, -1);
-	free(s1);
-	return (pb);
+	if (spec == 'p')
+		s = ft_ultoa(va_arg(ap, unsigned long), "0123456789abcdef");
+	else if (spec == 'x')
+		s = ft_utoab(va_arg(ap, unsigned int), "0123456789abcdef");
+	else if (spec == 'X')
+		s = ft_utoab(va_arg(ap, unsigned int), "0123456789ABCDEF");
+	return (s);
 }

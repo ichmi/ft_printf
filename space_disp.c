@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   space_dispatcher_bonus.c                           :+:      :+:    :+:   */
+/*   space_disp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 03:27:49 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/25 22:41:00 by frosa-ma         ###   ########.fr       */
+/*   Updated: 2022/05/27 19:08:03 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 int	__space_c(char *buff, va_list ap);
 int	__space_spx(char *buff, char *s);

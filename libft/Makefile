@@ -6,7 +6,7 @@
 #    By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/07 17:12:17 by frosa-ma          #+#    #+#              #
-#    Updated: 2022/05/23 14:35:01 by frosa-ma         ###   ########.fr        #
+#    Updated: 2022/05/27 19:06:29 by frosa-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ B_SRCS = \
 	./ft_lstdelone.c \
 	./ft_lstclear.c \
 	./ft_lstiter.c \
-	./ft_lstmap.c
+	./ft_lstmap.c \
 
 M_SRCS = \
 	./ft_isalpha.c \
@@ -71,7 +71,8 @@ M_SRCS = \
 	./ft_utoab.c \
 	./ft_utoa.c \
 	./ft_putptr.c \
-	./ft_strjoins.c 
+	./ft_strjoins.c \
+	./ft_putnstr.c
 
 M_OBJS = ${M_SRCS:.c=.o}
 B_OBJS = ${B_SRCS:.c=.o}

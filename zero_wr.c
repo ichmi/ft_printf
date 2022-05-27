@@ -1,63 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zero_spec_bonus.c                                  :+:      :+:    :+:   */
+/*   zero_wr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 03:54:55 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/25 22:41:39 by frosa-ma         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:44:23 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 int	__zero_c(char *buff, va_list ap)
 {
-	char	*temp;
+	char	ch;
 	int		bw;
 
-	temp = ft_calloc(ft_strlen(buff) + 1, sizeof(char));
-	ft_memcpy(temp, buff, ft_strlen(buff));
-	temp[ft_strlen(temp) - 1] = va_arg(ap, int);
-	bw = ft_putstr(temp);
-	free(temp);
+	bw = 0;
+	ch = va_arg(ap, int);
+	if (!ch)
+	{
+		bw += ft_putnstr(buff, ft_strlen(buff) - 1);
+		bw += ft_putchar('\0');
+		return (bw);
+	}
+	bw += ft_putnstr(buff, ft_strlen(buff) - 1);
+	bw += ft_putchar(ch);
 	return (bw);
 }
 
 int	__zero_s(char *buff, char *s)
 {
-	size_t	delta;
-	char	*temp;
 	int		bw;
 
-	delta = ft_strlen(buff) - ft_strlen(s);
-	temp = ft_calloc(ft_strlen(s) + delta + 1, sizeof(char));
+	bw = 0;
 	if (!*s)
-		ft_memcpy(temp, buff, ft_strlen(buff) + 1);
-	else
-	{
-		ft_memcpy(temp, s, ft_strlen(s) + 1);
-		ft_strlcat(temp, buff, ft_strlen(temp) + delta + 1);
-	}
-	bw = ft_putstr(temp);
-	free(temp);
+		return (ft_putnstr(buff, ft_strlen(buff)));
+	bw += ft_putnstr(buff, ft_strlen(buff) - ft_strlen(s));
+	bw += ft_putstr(s);
 	return (bw);
 }
 
 int	__zero_p(char *buff, char *s)
 {
 	size_t	delta;
-	char	*temp;
 	int		bw;
 
+	bw = 0;
 	delta = ft_strlen(buff) - ft_strlen(s) - 2;
-	temp = ft_calloc(ft_strlen(s) + delta + 3, sizeof(char));
-	ft_memcpy(temp, buff, delta);
-	ft_strlcat(temp, "0x", -1);
-	ft_strlcat(temp, s, -1);
-	bw = ft_putstr(temp);
-	free(temp);
+	bw += ft_putnstr(buff, delta);
+	bw += ft_putstr("0x");
+	bw += ft_putstr(s);
 	free(s);
 	return (bw);
 }
@@ -65,24 +59,28 @@ int	__zero_p(char *buff, char *s)
 int	__zero_id(char *buff, char *s)
 {
 	size_t	delta;
-	char	*temp;
 	int		bw;
 
+	bw = 0;
 	delta = ft_strlen(buff) - ft_strlen(s);
-	temp = ft_calloc(ft_strlen(s) + delta + 1, sizeof(char));
-	if (s[0] == '-')
+	if (*s == '-' && *buff == '0')
 	{
-		temp[0] = '-';
-		ft_strlcat(temp, buff, ft_strlen(temp) + delta + 1);
-		ft_strlcat(temp, s + 1, -1);
+		bw += ft_putchar('-');
+		bw += ft_putnstr(buff, delta);
+		bw += ft_putstr(s + 1);
+		free(s);
+		return (bw);
 	}
-	else
+	if (*s == '-')
 	{
-		ft_memcpy(temp, buff, delta);
-		ft_strlcat(temp, s, -1);
+		bw += ft_putnstr(buff, delta);
+		bw += ft_putchar('-');
+		bw += ft_putstr(s + 1);
+		free(s);
+		return (bw);
 	}
-	bw = ft_putstr(temp);
-	free(temp);
+	bw += ft_putnstr(buff, delta);
+	bw += ft_putstr(s);
 	free(s);
 	return (bw);
 }

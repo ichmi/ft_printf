@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils_bonus.c                            :+:      :+:    :+:   */
+/*   ft_putnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/25 18:39:46 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/25 21:37:11 by frosa-ma         ###   ########.fr       */
+/*   Created: 2022/05/26 22:06:10 by frosa-ma          #+#    #+#             */
+/*   Updated: 2022/05/27 17:37:43 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "libft.h"
 
-char	*__getstr(char spec, va_list ap)
+int	ft_putnstr(char *s, int n)
 {
-	char	*s;
+	int	bw;
 
-	if (spec == 'p')
-		s = ft_ultoa(va_arg(ap, unsigned long), "0123456789abcdef");
-	else if (spec == 'x')
-		s = ft_utoab(va_arg(ap, unsigned int), "0123456789abcdef");
-	else if (spec == 'X')
-		s = ft_utoab(va_arg(ap, unsigned int), "0123456789ABCDEF");
-	return (s);
+	if (!s)
+		return (write(1, "(null)", 6));
+	bw = 0;
+	while (*s && n--)
+	{
+		bw += ft_putchar(*s);
+		s++;
+	}
+	return (bw);
 }

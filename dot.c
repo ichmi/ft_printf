@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dot_bonus.c                                        :+:      :+:    :+:   */
+/*   dot.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 01:39:06 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/25 21:25:06 by frosa-ma         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:23:30 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 static int	__dot_justify(int n, char spec, va_list ap)
 {
@@ -35,6 +35,12 @@ static int	__dot_s(int n, va_list ap)
 
 	bw = 0;
 	s = va_arg(ap, char *);
+	if (!s)
+	{
+		if (n > 5)
+			return (ft_putstr("(null)"));
+		return (ft_putstr(""));
+	}
 	if (n > (int)ft_strlen(s))
 		bw += ft_putstr(s);
 	else
@@ -48,7 +54,6 @@ int	__dot(const char **fmt, va_list ap)
 	int		bw;
 	int		n;
 
-	bw = 0;
 	++(*fmt);
 	if (ft_isdigit(**fmt))
 	{
@@ -63,7 +68,7 @@ int	__dot(const char **fmt, va_list ap)
 	{
 		while (!ft_strchr("cspdiuxX%", **fmt))
 			(*fmt)++;
-		return (bw);
+		return (0);
 	}
 	bw = __spec_dispatch(**fmt, ap);
 	while (!ft_strchr("cspdiuxX%", **fmt))

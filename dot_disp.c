@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dot_dispatcher_bonus.c                             :+:      :+:    :+:   */
+/*   dot_disp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 02:25:25 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/25 21:24:23 by frosa-ma         ###   ########.fr       */
+/*   Updated: 2022/05/27 20:06:59 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 int	__dot_c(char *buff, va_list ap);
 int	__dot_p(char *buff, char *s);
@@ -19,9 +19,14 @@ int	__dot_uidx(char *buff, char *s);
 
 static int	__spec_c(char *buff, va_list ap)
 {
+	char	ch;
+
 	if (ft_strlen(buff) > 1)
 		return (__dot_c(buff, ap));
-	return (ft_putchar(va_arg(ap, int)));
+	ch = va_arg(ap, int);
+	if (!ch)
+		return (ft_putstr(""));
+	return (ft_putchar(ch));
 }
 
 static int	__spec_p(char *buff, va_list ap)

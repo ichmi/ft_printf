@@ -6,7 +6,7 @@
 #    By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/16 14:02:31 by frosa-ma          #+#    #+#              #
-#    Updated: 2022/05/27 19:06:47 by frosa-ma         ###   ########.fr        #
+#    Updated: 2022/05/29 02:58:22 by frosa-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME	= libftprintf.a
 CC		= cc
 CFLAGS	= -Wall -Werror -Wextra
 INC		= -I. -I libft/
-MAKE	= make -s
+MAKE	= make
 LIB		= libft.a
 SRCS	= \
 	ft_printf.c \
@@ -36,25 +36,30 @@ SRCS	= \
 	sharp.c \
 	plus.c
 
-OBJS	= ${SRCS:.c=.o}
+OBJDIR	= obj
+OBJS	= ${SRCS:%.c=%.o}
 
 all: ${NAME}
 
-${NAME}: ${LIB} ${OBJS}
-	@mv libft/${LIB} $@
-	@ar -rcs $@ ${OBJS}
+${NAME}: ${OBJS}
+	cp libft/${LIB} $@
+	ar -rcs $@ $^
+
+${OBJS}: | ${LIB}
+
 .c.o:
-	@${CC} ${CFLAGS} ${INC} -c $< -o ${<:.c=.o} 
+	${CC} ${CFLAGS} ${INC} -c $< -o ${<:%.c=%.o}
 
 ${LIB}:
-	@${MAKE} -C libft/ && ${MAKE} clean -C libft/
+	${MAKE} -C libft/
 
 bonus: all
 
 clean:
-	@rm -rf *.o
+	${MAKE} fclean -C libft/
+	rm -rf *.o
 
 fclean: clean
-	@rm -rf ${NAME}
+	rm -rf ${NAME}
 
 re: fclean all

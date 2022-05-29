@@ -6,7 +6,7 @@
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 01:32:31 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/27 19:07:41 by frosa-ma         ###   ########.fr       */
+/*   Updated: 2022/05/29 02:01:42 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	__spec_uid(char spec, char *buff, va_list ap)
 			return (__minus_diux(buff, s));
 		bw += ft_putstr(s);
 	}
-	else if (spec == 'u')
+	if (spec == 'u')
 	{
 		s = ft_utoa(va_arg(ap, unsigned int));
 		if (ft_strlen(buff) > ft_strlen(s))

@@ -6,7 +6,7 @@
 /*   By: frosa-ma <frosa-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 00:01:19 by frosa-ma          #+#    #+#             */
-/*   Updated: 2022/05/27 19:07:59 by frosa-ma         ###   ########.fr       */
+/*   Updated: 2022/05/29 02:02:22 by frosa-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ int	__sharp(const char **fmt, va_list ap)
 		ft_memset(buff, ' ', n);
 		while (!ft_strchr("cspdiuxX", **fmt))
 			++(*fmt);
-		if (ft_strchr("xX", **fmt))
-			bw = __sharp_dispatch(**fmt, buff, ap);
+		bw = __sharp_dispatch(**fmt, buff, ap);
 		free(buff);
 		return (bw);
 	}

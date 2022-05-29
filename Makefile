@@ -36,7 +36,6 @@ SRCS	= \
 	sharp.c \
 	plus.c
 
-OBJDIR	= obj
 OBJS	= ${SRCS:%.c=%.o}
 
 all: ${NAME}

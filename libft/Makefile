@@ -10,13 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-.PHONY = all clean fclean re bonus
+.PHONY	= all clean fclean re bonus
 
-NAME = libft.a
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+NAME	= libft.a
+CC	= gcc
+CFLAGS	= -Wall -Wextra -Werror
 
-B_SRCS = \
+B_SRCS	= \
 	./ft_lstnew.c \
 	./ft_lstadd_front.c \
 	./ft_lstsize.c \
@@ -27,7 +27,7 @@ B_SRCS = \
 	./ft_lstiter.c \
 	./ft_lstmap.c \
 
-M_SRCS = \
+M_SRCS	= \
 	./ft_isalpha.c \
 	./ft_isdigit.c \
 	./ft_isalnum.c \
@@ -80,18 +80,18 @@ B_OBJS = ${B_SRCS:.c=.o}
 all: ${NAME}
 
 ${NAME}: ${M_OBJS}
-	@ar rc ${NAME} ${M_OBJS}
+	ar rc ${NAME} ${M_OBJS}
 
 bonus: ${B_OBJS}
-	@ar rc ${NAME} ${B_OBJS}
+	ar rc ${NAME} ${B_OBJS}
 
 .c.o:
-	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 clean:
-	@rm -f ${M_OBJS} ${B_OBJS}
+	rm -f ${M_OBJS} ${B_OBJS}
 
 fclean: clean
-	@rm -f ${NAME}
+	rm -f ${NAME}
 
 re: fclean all

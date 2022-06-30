@@ -6,7 +6,7 @@ This is why learning to implement our own version of `printf` can help us better
 
 ## Capabilities
 My version of the `printf` function will handle the following specifiers: `cspdiuxX%`
-It will also work with these flags: `-0.# +’` (Yes, one of them is a space), and it will handle any possible combination.
+It will also work with these flags: `-0.# +` (Yes, one of them is a space), and it will handle any possible combination.
 
 ## Usage
 In order to use it, we should just clone the repo and use `make`:
